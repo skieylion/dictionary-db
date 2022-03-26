@@ -10,8 +10,9 @@ services:
       PGADMIN_DEFAULT_USER: root
       PGADMIN_DEFAULT_PASSWORD: root
     networks:
-      skynet:
-        ipv4_address: 172.22.0.5
+      - skynet
+#      skynet:
+#        ipv4_address: 172.22.0.5
     depends_on:
       - db
     ports:
@@ -20,8 +21,9 @@ services:
       - pgadmin-data:/var/lib/pgadmin   
   db:
     networks:
-      skynet:
-        ipv4_address: 172.22.0.6
+      - skynet
+#      skynet:
+#        ipv4_address: 172.22.0.6
     container_name: postgresql_db
     image: postgres
     restart: always
@@ -37,9 +39,10 @@ services:
 networks:
   skynet:
     driver: bridge
-    ipam:
-      config:
-        - subnet: 172.22.0.0/24
+#    name: skynet-db-network
+#    ipam:
+#      config:
+#        - subnet: 172.22.0.0/24
 volumes:
   db-data:
   pgadmin-data:
