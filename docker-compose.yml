@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   pgadmin:
@@ -36,10 +36,14 @@ services:
       - "5432:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
+#network_mode: host
 networks:
   skynet:
-    driver: bridge
-#    name: skynet-db-network
+    name: "skynet"
+#    external:
+#      name: host
+#    driver: bridge
+#    name: host
 #    ipam:
 #      config:
 #        - subnet: 172.22.0.0/24
